@@ -362,12 +362,13 @@ BOOL enableDebug;
 
                              coordinate:dest_placemark.coordinate];
     if([destType isEqual: @"coords"]){
-        NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
+      /*  NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
         f.numberStyle = NSNumberFormatterDecimalStyle;    
         NSNumber *nsLat = [f numberFromString:(latStr)];
         NSNumber *nsLng = [f numberFromString:(lngStr)];
-        double xLng = [nsLng doubleValue];
-        double xLat = [nsLat doubleValue];
+        */
+        double xLat = [latStr doubleValue];
+        double xLng = [lngStr doubleValue];
         CLLocationCoordinate2D cc = (CLLocationCoordinate2D){.latitude = xLat, .longitude = xLng};
         dest_cmm = [CMMapPoint mapPointWithCoordinate:cc];
     }
