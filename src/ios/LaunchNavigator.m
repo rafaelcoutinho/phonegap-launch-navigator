@@ -97,6 +97,8 @@ NSString* startType;
 NSString* startName;
 
 NSString* appName;
+NSString* latStr;
+NSString* lngStr;
 
 NSString* transportMode;
 
@@ -143,6 +145,9 @@ BOOL enableDebug;
         transportMode = [self.cordova_command.arguments objectAtIndex:7];
 
         enableDebug = [[command argumentAtIndex:8] boolValue];
+        
+        latStr = [self.cordova_command.arguments objectAtIndex:9];
+        lngStr = [self.cordova_command.arguments objectAtIndex:10];
 
 
 
@@ -358,14 +363,13 @@ BOOL enableDebug;
                              coordinate:dest_placemark.coordinate];
     if([destType isEqual: @"coords"]){
         NSNumberFormatter *f = [[NSNumberFormatter alloc] init];
-    f.numberStyle = NSNumberFormatterDecimalStyle;
-    NSArray *listItems = [destination componentsSeparatedByString:@","];
-    NSNumber *nsLat = [f numberFromString:([listItems objectAtIndex:0])];
-    NSNumber *nsLng = [f numberFromString:([listItems objectAtIndex:1])];
-    double xLng = [nsLng doubleValue];
-    double xLat = [nsLat doubleValue];
-    CLLocationCoordinate2D cc = (CLLocationCoordinate2D){.latitude = xLat, .longitude = xLng};
-    dest_cmm = [CMMapPoint mapPointWithCoordinate:cc		];
+        f.numberStyle = NSNumberFormatterDecimalStyle;    
+        NSNumber *nsLat = [f numberFromString:(latStr)];
+        NSNumber *nsLng = [f numberFromString:(lngStr)];
+        double xLng = [nsLng doubleValue];
+        double xLat = [nsLat doubleValue];
+        CLLocationCoordinate2D cc = (CLLocationCoordinate2D){.latitude = xLat, .longitude = xLng};
+        dest_cmm = [CMMapPoint mapPointWithCoordinate:cc];
     }
 
     [self logDebug:logMsg];
