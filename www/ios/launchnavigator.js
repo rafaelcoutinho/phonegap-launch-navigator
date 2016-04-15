@@ -142,8 +142,7 @@ ln.v3.navigate = function(destination, options) {
         options.app,
         options.transportMode,
         options.enableDebug,
-        options.lat,
-        options.lng
+        options.avoidReverseGeocoding        
     ]);
 
 };
