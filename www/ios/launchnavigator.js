@@ -141,7 +141,8 @@ ln.v3.navigate = function(destination, options) {
         options.startName,
         options.app,
         options.transportMode,
-        options.enableDebug
+        options.enableDebug,
+        options.avoidReverseGeocoding        
     ]);
 
 };
